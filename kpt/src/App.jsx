@@ -6,15 +6,18 @@ import Button from './component/Button';
 
 function App() {
   const [viewChange, setViewChange] = useState('Home');
-  
+  function viewSelect(viewName){
+    setViewChange(viewName);
+  }
+
   return (
     <div>
       <nav>
-        <Button>Home</Button>
-        <Button>Keep</Button>
-        <Button>Problem</Button>
-        <Button>Try</Button>
-        <Button>Log In</Button>
+        <Button onSelect={()=>viewSelect('Home')}>Home</Button>
+        <Button onSelect={()=>viewSelect('Keep')}>Keep</Button>
+        <Button onSelect={()=>viewSelect('Problem')}>Problem</Button>
+        <Button onSelect={()=>viewSelect('Try')}>Try</Button>
+        <Button onSelect={()=>viewSelect('Log In')}>Log In</Button>
       </nav>
       <div className='content'>
         <MemoGroup list={keepMemo} key='_keep' />
