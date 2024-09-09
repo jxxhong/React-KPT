@@ -18,3 +18,9 @@
   color: white;
   font-size: small;
 }
+.loginForm{
+  width: 500px;
+  height: 300px;
+  border: #b0b0b0 1px solid;
+  border-radius: 50px;
+}

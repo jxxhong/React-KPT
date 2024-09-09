@@ -20,5 +20,9 @@ export let tryMemo = [
   {
     content : 'try memo',
     date : 20240321,
-  }
+  },
 ]
+
+export let Info = {
+    ex0000 : 'ex1234',
+}

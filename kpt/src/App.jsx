@@ -3,10 +3,13 @@ import './App.css';
 import { keepMemo, problemMemo, tryMemo } from './data';
 import MemoGroup from './component/MemoGroup';
 import Button from './component/Button';
+import Login from './component/Login';
 
 function App() {
   const [viewChange, setViewChange] = useState('Home');
+  const [user, setUser] = useState();
   let viewContent;
+  
   function viewSelect(viewName){
     setViewChange(viewName);
   }
@@ -18,24 +21,22 @@ function App() {
         <MemoGroup list={tryMemo} key='_try' />
       </div>
   }else if(viewChange === 'Keep'){
-    viewContent = <div className='content'>
+    viewContent = <div className='keepContent'>
         <MemoGroup list={keepMemo} key='_keep' />
       </div>
   }else if(viewChange === 'Problem'){
-    viewContent = <div className='content'>
+    viewContent = <div className='problemContent'>
         <MemoGroup list={problemMemo} key='_problem' />
       </div>
   }else if(viewChange === 'Try'){
-    viewContent = <div className='content'>
+    viewContent = <div className='tryContent'>
         <MemoGroup list={tryMemo} key='_Try' />
       </div>
   }else if(viewChange === 'Log In'){
-    viewContent = <div className='content'>
-        <p>empty</p>
+    viewContent = <div className='logInPage'>
+        <Login></Login>
       </div>
   }
-
-
 
   return (
     <div>
