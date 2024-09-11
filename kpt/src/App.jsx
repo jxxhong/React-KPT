@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import './App.css';
-import { keepMemo, problemMemo, tryMemo } from './data';
+import { keepMemo, problemMemo, tryMemo, IDtoName } from './data';
 import MemoGroup from './component/MemoGroup';
 import Button from './component/Button';
 import Login from './component/Login';
 import SignIn from './component/SignIn';
-import { IDtoName } from './data';
+import MemoList from './component/MemoList';
 
 function App() {
   const [viewChange, setViewChange] = useState('Home');
   const [user, setUser] = useState(null);
+  const nickname = IDtoName[user];
+  
   let viewContent, viewButton;
 
   function viewSelect(viewName){
@@ -21,22 +23,16 @@ function App() {
   
   if(viewChange === 'Home'){
     viewContent = <div className='content'>
-        <MemoGroup list={keepMemo} key='_keep' />
-        <MemoGroup list={problemMemo} key='_problem' />
-        <MemoGroup list={tryMemo} key='_try' />
-      </div>
+      <MemoGroup list={keepMemo} key='Keep' />
+      <MemoGroup list={problemMemo} key='Problem' />
+      <MemoGroup list={tryMemo} key='Try' />
+    </div>
   }else if(viewChange === 'Keep'){
-    viewContent = <div className='keepContent'>
-        <MemoGroup list={keepMemo} key='_keep' />
-      </div>
+    viewContent = <MemoList page={viewSelect} val={viewChange} list={keepMemo} writeBy={nickname}/>
   }else if(viewChange === 'Problem'){
-    viewContent = <div className='problemContent'>
-        <MemoGroup list={problemMemo} key='_problem' />
-      </div>
+    viewContent = <MemoList page={viewSelect} val={viewChange} list={problemMemo} writeBy={nickname}/>
   }else if(viewChange === 'Try'){
-    viewContent = <div className='tryContent'>
-        <MemoGroup list={tryMemo} key='_Try' />
-      </div>
+    viewContent = <MemoList page={viewSelect} val={viewChange} list={tryMemo} writeBy={nickname}/>
   }else if(viewChange === 'Log In'){
     viewContent = <div className='logInPage'>
         <Login 
@@ -52,15 +48,15 @@ function App() {
   }
 
   if(user === null){
-    viewButton = <div className='beforeLogIn'>
+    viewButton = <>
       <Button onSelect={()=>viewSelect('Log In')}>Log In</Button>
       <Button onSelect={()=>viewSelect('Sign In')}>Sign In</Button>
-    </div>
+    </>
   }else{
-    viewButton = <div className='afterLogIn'>
-      <p>{IDtoName[user]}님, 환영합니다!</p>
+    viewButton = <>
       <Button onSelect={()=>setUser(null)}>Log Out</Button>
-    </div>
+      <p>{nickname}님, 환영합니다!</p>
+    </>
   }
 
   return (

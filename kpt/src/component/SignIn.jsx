@@ -1,4 +1,3 @@
-import Button from "./Button";
 import { Info } from "../data";
 import { IDtoName } from "../data";
 
