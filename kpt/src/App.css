@@ -10,7 +10,7 @@
 .memo{
   float: left;
   width : calc(100%  / 3);
-  height: 50px;
+  height: 100px;
   margin: 30px 10px;
   background-color: #b0b0b0;
   border: #b0b0b0 solid 1px;

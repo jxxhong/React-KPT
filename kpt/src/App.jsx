@@ -4,14 +4,19 @@ import { keepMemo, problemMemo, tryMemo } from './data';
 import MemoGroup from './component/MemoGroup';
 import Button from './component/Button';
 import Login from './component/Login';
+import SignIn from './component/SignIn';
+import { IDtoName } from './data';
 
 function App() {
   const [viewChange, setViewChange] = useState('Home');
-  const [user, setUser] = useState();
-  let viewContent;
-  
+  const [user, setUser] = useState(null);
+  let viewContent, viewButton;
+
   function viewSelect(viewName){
     setViewChange(viewName);
+  }
+  function userInfo(id){
+    setUser(id);
   }
   
   if(viewChange === 'Home'){
@@ -34,8 +39,28 @@ function App() {
       </div>
   }else if(viewChange === 'Log In'){
     viewContent = <div className='logInPage'>
-        <Login></Login>
+        <Login 
+        page={viewSelect}
+        getInfo={userInfo}/>
       </div>
+  }else if(viewChange === 'Sign In'){
+    viewContent = <div className='SignInPage'>
+        <SignIn 
+          page={viewSelect}
+          getInfo={userInfo}/>
+      </div>
+  }
+
+  if(user === null){
+    viewButton = <div className='beforeLogIn'>
+      <Button onSelect={()=>viewSelect('Log In')}>Log In</Button>
+      <Button onSelect={()=>viewSelect('Sign In')}>Sign In</Button>
+    </div>
+  }else{
+    viewButton = <div className='afterLogIn'>
+      <p>{IDtoName[user]}님, 환영합니다!</p>
+      <Button onSelect={()=>setUser(null)}>Log Out</Button>
+    </div>
   }
 
   return (
@@ -45,7 +70,7 @@ function App() {
         <Button onSelect={()=>viewSelect('Keep')}>Keep</Button>
         <Button onSelect={()=>viewSelect('Problem')}>Problem</Button>
         <Button onSelect={()=>viewSelect('Try')}>Try</Button>
-        <Button onSelect={()=>viewSelect('Log In')}>Log In</Button>
+        {viewButton}
       </nav>
       {viewContent}
     </div>
