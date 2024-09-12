@@ -1,4 +1,3 @@
-import Button from "./Button";
 import { Info } from "../data";
 
 export default function Login({getInfo, page}, props) {
@@ -20,11 +19,11 @@ export default function Login({getInfo, page}, props) {
       <h2>로그인</h2>
       <div className="InfoInput">
         <div className="idInput">
-          <label htmlFor="id">ID</label>
+          <p>ID</p>
           <input type="text" id="id" />
         </div>
         <div className="pwInput">
-          <label htmlFor="pw">Password</label>
+          <p>Password</p>
           <input type="password" id="pw" />
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function Inputform({page, list, writeBy, func}){
   }
 
   return(
-    <form>
+    <form className="uploadForm">
       <input type="text" name="memoInput" id="memoInput" />
       <button onClick={memoUpload}>업로드</button>
     </form>

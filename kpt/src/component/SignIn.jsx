@@ -34,15 +34,15 @@ export default function SignIn({getInfo, page}, props) {
       <h2>회원가입</h2>
       <div className="InfoInput">
         <div className="nameInput">
-          <label htmlFor="name">Name</label>
+          <p>Name</p>
           <input type="text" id="name" />
         </div>
         <div className="idInput">
-          <label htmlFor="id">ID</label>
+          <p>ID</p>
           <input type="text" id="id" />
         </div>
         <div className="pwInput">
-          <label htmlFor="pw">Password</label>
+          <p>Password</p>
           <input type="password" id="pw" />
         </div>
       </div>
