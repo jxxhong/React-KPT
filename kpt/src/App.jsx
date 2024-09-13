@@ -10,7 +10,7 @@ import MemoList from './component/MemoList';
 function App() {
   const [viewChange, setViewChange] = useState('Home');
   const [user, setUser] = useState(null);
-  const nickname = IDtoName[user];
+  const [nickname, setNickname] = useState(null);
 
   let viewContent, viewButton;
 
@@ -19,14 +19,24 @@ function App() {
   }
   function userInfo(id) {
     setUser(id);
+    setNickname(IDtoName[id]);
   }
+  keepMemo.sort((a, b) =>{
+    return b.date - a.date;
+  })
+  problemMemo.sort((a, b) =>{
+    return b.date - a.date;
+  })
+  tryMemo.sort((a, b) =>{
+    return b.date - a.date;
+  })
 
   if (viewChange === 'Home') {
-    viewContent = <>
-      <MemoGroup list={keepMemo} key='Keep' />
+    viewContent = <div className='memogroup'>
+      <MemoGroup list={keepMemo.slice(0,4)} key='Keep' />
       <MemoGroup list={problemMemo} key='Problem' />
       <MemoGroup list={tryMemo} key='Try' />
-    </>
+    </div>
   } else if (viewChange === 'Keep') {
     viewContent = <MemoList page={viewSelect} val={viewChange} list={keepMemo} writeBy={nickname} className='keepList'/>
   } else if (viewChange === 'Problem') {

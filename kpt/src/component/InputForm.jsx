@@ -3,7 +3,7 @@ export default function Inputform({page, list, writeBy, func}){
   let uploadList = {};
 
   const memoUpload = (e) =>{
-    if(writeBy === undefined){
+    if(writeBy === null){
       alert('로그인 후 작성 가능합니다.');
       page('Log In');
     }
